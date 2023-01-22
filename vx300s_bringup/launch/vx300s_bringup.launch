@@ -1,0 +1,25 @@
+<launch>
+  <arg name="prefix"                            default="a_bot_"/>
+  <arg name="port"                              default="/dev/ttyUSB0"/>
+  
+  <arg name="urdf_path" default="$(find vx300s_description)/urdf/vx300s.xacro"/>
+
+  <!-- send robot urdf to param server -->
+  <param name="robot_description" command="xacro '$(arg urdf_path)' prefix:=$(arg prefix)" />
+
+  <include file="$(find vx300s_ros_control)/launch/vx300s_ros_control.launch">
+    <arg name="port"                            value="$(arg port)"/>
+    <arg name="prefix"                          value="$(arg prefix)"/>
+  </include>
+
+  <rosparam file="$(find vx300s_bringup)/config/controllers.yaml" command="load" subst_value="true"/>
+  <node
+    name="controller_spawner"
+    pkg="controller_manager"
+    type="controller_manager"
+    respawn="false"
+    output="screen"
+    args="spawn joint_state_controller arm_controller gripper_controller">
+  </node>
+
+</launch>

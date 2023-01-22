@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <xacro:macro name="vx300s_transmission" params="prefix hw_interface">
+
+    <xacro:macro name="joint_transmission" params="joint_name">
+      <transmission name="${joint_name}_trans">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="${joint_name}">
+          <hardwareInterface>${hw_interface}</hardwareInterface>
+        </joint>
+        <actuator name="${joint_name}_motor">
+          <mechanicalReduction>1</mechanicalReduction>
+          <hardwareInterface>${hw_interface}</hardwareInterface>
+        </actuator>
+      </transmission>
+    </xacro:macro>
+
+    <xacro:joint_transmission joint_name="${prefix}waist" />
+    <xacro:joint_transmission joint_name="${prefix}shoulder" />
+    <xacro:joint_transmission joint_name="${prefix}elbow" />
+    <xacro:joint_transmission joint_name="${prefix}forearm_roll" />
+    <xacro:joint_transmission joint_name="${prefix}wrist_angle" />
+    <xacro:joint_transmission joint_name="${prefix}wrist_rotate" />
+    <xacro:joint_transmission joint_name="${prefix}left_finger" />
+    <xacro:joint_transmission joint_name="${prefix}right_finger" />
+
+  </xacro:macro>
+
+</robot>

@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://wiki.ros.org/xacro"
+  name="vx300s">
+
+  <xacro:arg name="prefix" default="a_bot" />
+
+  <!-- Robot -->
+  <xacro:include filename="$(find vx300s_description)/urdf/vx300s_macro.xacro" />
+
+  <!-- arm -->
+  <xacro:vx300s prefix="$(arg prefix)" hw_interface="hardware_interface/EffortJointInterface" />
+
+  <link name="world" />
+
+  <joint name="$(arg prefix)to_world" type="fixed">
+    <parent link="world" />
+    <child link="$(arg prefix)base_link" />
+    <origin xyz="0 0 0" />
+  </joint>
+
+</robot>

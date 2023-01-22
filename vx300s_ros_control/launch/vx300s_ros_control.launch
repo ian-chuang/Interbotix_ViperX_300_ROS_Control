@@ -1,0 +1,21 @@
+<launch>
+  <arg name="prefix"/>
+  <arg name="port"/>
+
+  <include file="$(find vx300s_sdk)/launch/vx300s_sdk.launch">
+    <arg name="port"                            value="$(arg port)"/>
+    <arg name="prefix"                          value="$(arg prefix)"/>
+  </include>
+
+  <node
+    name="$(arg prefix)vx300s_hardware_interface"
+    pkg="vx300s_ros_control"
+    type="vx300s_hardware_interface"
+    output="screen">
+    <param name="prefix"                          value="$(arg prefix)"/>
+    <param name="loop_hz"                         value="10"/>
+    <param name="group_name"                      value="arm"/>
+    <param name="gripper_name"                    value="gripper"/>
+  </node>
+
+</launch>

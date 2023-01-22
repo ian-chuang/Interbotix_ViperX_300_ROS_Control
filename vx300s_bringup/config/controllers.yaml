@@ -1,0 +1,21 @@
+joint_state_controller:
+  type: joint_state_controller/JointStateController
+  publish_rate: 50
+
+arm_controller:
+  type: position_controllers/JointTrajectoryController
+  joints:
+    - $(arg prefix)waist
+    - $(arg prefix)shoulder
+    - $(arg prefix)elbow
+    - $(arg prefix)forearm_roll
+    - $(arg prefix)wrist_angle
+    - $(arg prefix)wrist_rotate
+  constraints:
+    goal_time: 1
+    stopped_velocity_tolerance: 0.02
+
+gripper_controller:
+  type: position_controllers/JointTrajectoryController
+  joints:
+    - $(arg prefix)left_finger
