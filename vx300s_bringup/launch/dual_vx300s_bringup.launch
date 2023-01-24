@@ -1,0 +1,19 @@
+<launch>
+  <arg name="ns_0"                                default="a_bot"/>
+  <arg name="prefix_0"                            default="a_bot_"/>
+  <arg name="port_0"                              default="/dev/ttyUSB0"/>
+  <arg name="ns_1"                                default="b_bot"/>
+  <arg name="prefix_1"                            default="b_bot_"/>
+  <arg name="port_1"                              default="/dev/ttyUSB1"/>
+
+  <include file="$(find vx300s_bringup)/launch/vx300s_bringup.launch" ns="$(arg ns_0)">
+    <arg name="port"                            value="$(arg port_0)"/>
+    <arg name="prefix"                          value="$(arg prefix_0)"/>
+  </include>
+
+  <include file="$(find vx300s_bringup)/launch/vx300s_bringup.launch" ns="$(arg ns_1)">
+    <arg name="port"                            value="$(arg port_1)"/>
+    <arg name="prefix"                          value="$(arg prefix_1)"/>
+  </include>
+
+</launch>
