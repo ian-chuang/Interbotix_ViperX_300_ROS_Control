@@ -217,7 +217,7 @@
 
     <joint name="${prefix}wrist_rotate" type="revolute">
       <axis xyz="1 0 0" />
-      <limit effort="1" lower="${-pi + pi_offset}" upper="${pi - pi_offset}" velocity="${pi}" />
+      <limit effort="1" lower="${-pi/2 + pi_offset}" upper="${pi/2 - pi_offset}" velocity="${pi}" />
       <origin rpy="0 0 0" xyz="0.069744 0 0" />
       <parent link="${prefix}wrist_link" />
       <child link="${prefix}gripper_link" />
